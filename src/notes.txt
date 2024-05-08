@@ -1,0 +1,20 @@
+/*Problem: 
+we have om make a GitHub repo explorer, where there is a input bar and search are and when to clicked we give results of the username entered. We must make call to GitHub to get usernames. 
+And then  when user is clicked, we must make sure that you can then see all their repo, with its name, description, number of stars, topics, and date created. 
+And when any of repo is clicked, we take it to that repository page of that specific user. 
+
+Breaking down the Problem:
+ Ok just have an app component, that will have title of GitHub repository  explorer. 
+Then we will have input bar and search bar. 
+When user is entered, we make an Api call, and we loop over data array and show their picture, name and they will all have each  a state call show. F show is true, then their repos will be shown. We will have separate component for repo, as well as users. 
+Repos will have 
+info of name, description, stars, topics, and date created.
+ We will have to access that from the Api call. 
+We will do the design later. Now, when any of that repo card is clicked, we have to somehow open an new page for that, I don’t know how o do that, will ask from ChatGPT and inshallah learn. 
+
+lesson learnt: 
+if you wan tot check if a fetch response has no data when it return it in function check if its
+ length is 1 or bigger, not true since empty array is true
+ browsers have become more consistent, so it isn't important to ue a css reset these days, though some people do a lightweight version
+if content is overflowing form a container, decrease width of container so that its ok. 
+ */
