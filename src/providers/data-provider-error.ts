@@ -8,5 +8,6 @@ export class DataProviderError extends Error {
     super(
       `${method} to ${url} received status code: ${statusCode} with body: ${body}`
     );
+    console.log(body);
   }
 }

@@ -1,33 +1,9 @@
-import { DataProvider, User, RepositoryData } from "./data-provider";
+
 import { DataProviderError } from "./data-provider-error";
+import { RepoProvider, RepositoryData } from "./repo-provider";
 const githubToken = process.env.REACT_APP_GITHUB_TOKEN;
 console.log(githubToken);
-export class GithubDataProvider extends DataProvider {
-  async getUsers(username: string): Promise<User[]> {
-    const response = await fetch(
-      "https://api.github.com/search/users?q=" + username
-    );
-
-    if (!response.ok) {
-      throw new DataProviderError(
-        "GET",
-        response.url,
-        response.status,
-
-        await response.text()
-      );
-    }
-    const body = await response.json();
-    if (body.length === 0) {
-      throw new Error("Their wasn't anybody with that username");
-    }
- console.log(body.items)
-    const userData = body.items.map((user: GithubUser) => ({
-      username: user.login,
-      profileUrl: user.avatar_url,
-    }));
-    return userData;
-  }
+export class GithubRepoProvider extends RepoProvider {
   async getRepositoriesData(username: string) {
     const reposImportantData: RepositoryData[] = [];
     const response = await fetch(
@@ -48,10 +24,7 @@ export class GithubDataProvider extends DataProvider {
     }
 
     const body = await response.json();
-    // get rid of github repo
-    // get rid of extra folder
-    // find the correct types for the currently missing
-    // write tests
+
     console.log(body);
     body.forEach((repo: GithubRepo) => {
       const repoData = {
@@ -69,28 +42,6 @@ export class GithubDataProvider extends DataProvider {
   }
 }
 
-
-interface GithubUser {
-  login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-  site_admin: boolean;
-  score: number;
-}
 interface GithubRepo {
   id: number;
   node_id: string;
