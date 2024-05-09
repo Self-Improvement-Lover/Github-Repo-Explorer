@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 
 import "./App.css";
 import { DisplayUser } from "./components/user";
-import { GithubDataProvider } from "./providers/github-data-provider";
-import { User } from "./providers/data-provider";
+import { GithubUsersProvider } from "./providers/github-users-provider";
+import { User } from "./providers/users-provider";
 
 function App() {
-  const githubProvider = new GithubDataProvider();
+  const githubUsersProvider = new GithubUsersProvider();
   const [queryUser, setQueryUser] = useState("");
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState("");
 
   async function onUserSearch(username: string) {
     try {
-      const users = await githubProvider.getUsers(username);
+      const users = await githubUsersProvider.getUsers(username);
       setUsers(users);
     } catch (e) {
       setUsers([]);

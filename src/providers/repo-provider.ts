@@ -1,14 +1,8 @@
-export abstract class DataProvider {
-  abstract getUsers(username: string): Promise<User[] | null>;
+export abstract class RepoProvider {
   abstract getRepositoriesData(
     username: string
   ): Promise<RepositoryData[] | null>;
 }
-
-export type User = {
-  username: string;
-  profileUrl: string;
-};
 
 export type RepositoryData = {
   name: string;
