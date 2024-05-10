@@ -3,11 +3,13 @@ export class DataProviderError extends Error {
     method: String,
     url: string,
     statusCode: number,
-    body: string | ReadableStream<Uint8Array> | null  // NOTE: deal with ReadableStream so its message can be displayed 
+    body: string | ReadableStream<Uint8Array> | null  // TODO: deal with ReadableStream so its message can be displayed 
   ) {
     super(
       `${method} to ${url} received status code: ${statusCode} with body: ${body}`
     );
     console.log(body);
+    
+    console.log(statusCode);
   }
 }

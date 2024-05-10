@@ -1,4 +1,3 @@
-
 import { DataProviderError } from "./data-provider-error";
 import { RepoProvider, RepositoryData } from "./repo-provider";
 const githubToken = process.env.REACT_APP_GITHUB_TOKEN;
@@ -14,6 +13,10 @@ export class GithubRepoProvider extends RepoProvider {
         },
       }
     );
+
+    if (response.status === 404) {
+      return [];
+    }
     if (!response.ok) {
       throw new DataProviderError(
         "GET",
